@@ -1,0 +1,27 @@
+{
+  "name": "Yoga_Teacher_Assistant",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steve Haase & Erin Aquin",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.13.2",
+    "cookie-session": "^1.2.0",
+    "crypto": "0.0.3",
+    "email-validator": "^1.0.2",
+    "express": "^4.13.1",
+    "express-mongoose": "^0.1.0",
+    "express-session": "^1.11.3",
+    "jade": "^1.11.0",
+    "mongoose": "^4.0.7",
+    "mongoose-lifecycle": "^1.0.0",
+    "morgan": "^1.6.1",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0"
+  }
+}
