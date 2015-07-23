@@ -18,8 +18,13 @@ module.exports = function(app){
 	app.post('/signup', function(req, res, next){
 		var email = req.body.email;
 		var pass = req.body.pass;
+		var veri = req.body.verification;
 		if (!(email && pass)) {
 			return invalid();
+		}
+
+		if (pass != veri) {
+			return noMatch();
 		}
 
 		User.findById(email, function(err, user){
@@ -52,6 +57,10 @@ module.exports = function(app){
 		function invalid(){
 			return res.render('signup.jade', {invalid: true});
 		}
+
+		function noMatch(){
+			return res.render('signup.jade', {noMatch: true});
+		}
 	});
 	
 	app.get('/login', function(req, res){
@@ -70,9 +79,9 @@ module.exports = function(app){
 		User.findById(email, function(err, user){
 			if (err) return next(err);
 
-			if (!user) return invalid();
+			if (!user) return noUser();
 
-			if (user.hash != hash(pass, user.salt)) return invalid();
+			if (user.hash != hash(pass, user.salt)) return wrongPass();
 
 			req.session.isLoggedIn = true;
 			req.session.user = email;
@@ -80,6 +89,12 @@ module.exports = function(app){
 		});
 		function invalid() {
 			return res.render('login.jade', {invalid: true});
+		}
+		function noUser() {
+			return res.render('login.jade', {noUser: true});
+		}
+		function wrongPass() {
+			return res.render('login.jade', {wrongPass: true});
 		}
 	})
 

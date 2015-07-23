@@ -5,14 +5,19 @@ block content
 		h3 Sign up
 		if exists
 			.error
-				| That user exists. Maybe you're trying to a(href="/login") Login?
+				| That user exists. Maybe you're trying to <a href='/login'>Login?</a>
 		if invalid
 			.error Please enter a valid email address and password.
+		if noMatch
+			.error Password doesn't match in both fields. Try it again?
 		ul
 			li
 				label(for='email') Email
 				input#email(name='email')
 			li
 				label(for='password') Password
-				input#pass(name='pass')
+				input#pass(name='pass', type='password')
+			li
+				label(for='verification') Re-type password
+				input#verification(name='verification', type='password')
 		input(type='submit', value='Sign Up')

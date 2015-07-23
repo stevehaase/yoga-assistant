@@ -3,9 +3,11 @@ var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
+var port = process.env.PORT || 3000;
 
 module.exports = function(app){
 
+        app.set(port);
         app.use(morgan('dev'));
         app.use(cookieSession({
                 keys: ['key1', 'key2']

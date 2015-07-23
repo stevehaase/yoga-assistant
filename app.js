@@ -7,6 +7,7 @@ require('express-mongoose');
 require('./models/blogpost');
 require('./models/users');
 require('./models/comment');*/
+var port = process.env.PORT || 3000;
 
 mongoose.connect('mongodb://localhost', function(err){
         if (err) throw err;
@@ -16,8 +17,8 @@ mongoose.connect('mongodb://localhost', function(err){
         middleware(app);
         routes(app);
 
-        app.listen(3000, function(){
-                console.log('now listening on http://localhost:3000');
+        app.listen(port, function(){
+                console.log('now listening on ' + port);
 
         });
 });
